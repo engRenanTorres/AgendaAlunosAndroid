@@ -2,6 +2,8 @@ package com.rsouzat.agendatest.ui.activity;
 
 import static com.rsouzat.agendatest.ui.activity.ConstantesActivities.CHAVE_ALUNO;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +11,8 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +20,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rsouzat.agendatest.DAO.AlunoDAO;
 import com.rsouzat.agendatest.R;
 import com.rsouzat.agendatest.model.Aluno;
-
-import java.util.List;
+import com.rsouzat.agendatest.ui.adapter.ListaAlunosAdapter;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
   public static final String TITULO_APPBAR = "Lista de alunos";
-  private ArrayAdapter<Aluno> adapter;
-  AlunoDAO dao = new AlunoDAO();
+  private ListaAlunosAdapter adapter;
+  final AlunoDAO dao = new AlunoDAO();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,17 +34,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     setContentView(R.layout.activity_lista_alunos);
 
     setTitle(TITULO_APPBAR);
-    dao.salva(new Aluno("Renan", "4612347", "renan@alex"));
-    dao.salva(new Aluno("Fran", "4612347", "fran@alex"));
-
-/*        List<String> alunos = new ArrayList<String>(
-                Arrays.asList("Renan","Jessica","José","Maria", "Ana"));
-        TextView primeiroAluno = findViewById(R.id.textView);
-        TextView segundoAluno = findViewById(R.id.textView2);
-        TextView terceiroAluno = findViewById(R.id.textView3);
-        primeiroAluno.setText(alunos.get(0));
-        segundoAluno.setText(alunos.get(1));
-        terceiroAluno.setText(alunos.get(2));*/
 
 
     configuraFABNovoAluno();
@@ -60,16 +48,31 @@ public class ListaAlunosActivity extends AppCompatActivity {
   }
 
   @Override
-  public boolean onContextItemSelected(@NonNull MenuItem item) {
+  public boolean onContextItemSelected(MenuItem item) {
 
     int itemId = item.getItemId();
     if (itemId == R.id.activity_lista_alunos_menu_remover) {
-      AdapterView.AdapterContextMenuInfo menuInfo =
-              (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-      Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
-      remove(alunoEscolhido);
+      confirmaRemocao(item);
     }
     return super.onContextItemSelected(item);
+  }
+
+  private void confirmaRemocao(final MenuItem item) {
+    new AlertDialog
+        .Builder(this)
+        .setTitle("Removendo aluno")
+        .setMessage("Tem certeza que quer remover o aluno?")
+        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialogInterface, int i) {
+            AdapterView.AdapterContextMenuInfo menuInfo =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
+            remove(alunoEscolhido);
+          }
+        })
+        .setNegativeButton("Não",null)
+        .show();
   }
 
   private void configuraFABNovoAluno() {
@@ -90,8 +93,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
   }
 
   private void atualizaAlunos() {
-    adapter.clear();
-    adapter.addAll(dao.todos());
+    adapter.atualiza(dao.todos());
   }
 
   private void configuraLista() {
@@ -128,9 +130,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
   }
 
   private void configuraAdapter(ListView listaDeAlunos) {
-    adapter = new ArrayAdapter<>(
-            this,
-            android.R.layout.simple_list_item_1);
+
+    adapter = new ListaAlunosAdapter(this);
     listaDeAlunos.setAdapter(adapter);
   }
 }
