@@ -39,6 +39,8 @@ public class ListaAlunosAdapter extends BaseAdapter {
 
   @Override
   public View getView(int posicao, View view, ViewGroup viewGroup) {
+
+
     View viewCriada = criaView(viewGroup);
     Aluno aluno = alunos.get(posicao);
     vincula(viewCriada, aluno);
