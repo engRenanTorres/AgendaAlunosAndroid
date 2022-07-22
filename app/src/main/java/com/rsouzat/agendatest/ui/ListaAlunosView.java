@@ -6,7 +6,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.rsouzat.agendatest.DAO.AlunoDAO;
+import com.rsouzat.agendatest.dao.AlunoDAO;
+import com.rsouzat.agendatest.database.AgendaDatabase;
 import com.rsouzat.agendatest.model.Aluno;
 import com.rsouzat.agendatest.ui.adapter.ListaAlunosAdapter;
 
@@ -19,7 +20,8 @@ public class ListaAlunosView {
   public ListaAlunosView(Context context) {
     this.context = context;
     this.adapter = new ListaAlunosAdapter(this.context);
-    this.dao = new AlunoDAO();
+    dao = AgendaDatabase.getInstance(context)
+            .getRoomAlunoDAO();
   }
 
   public void confirmaRemocao(final MenuItem item) {

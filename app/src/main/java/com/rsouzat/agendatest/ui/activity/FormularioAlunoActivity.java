@@ -11,8 +11,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.rsouzat.agendatest.DAO.AlunoDAO;
 import com.rsouzat.agendatest.R;
+import com.rsouzat.agendatest.dao.AlunoDAO;
+import com.rsouzat.agendatest.database.AgendaDatabase;
 import com.rsouzat.agendatest.model.Aluno;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
@@ -23,12 +24,14 @@ public class FormularioAlunoActivity extends AppCompatActivity {
   private EditText campoTelefone;
   private EditText campoEmail;
   private Aluno aluno;
-  final AlunoDAO dao = new AlunoDAO();
+  private AlunoDAO dao;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_formulario_aluno);
+    AgendaDatabase database = AgendaDatabase.getInstance(this);
+    dao = database.getRoomAlunoDAO();
 
 
     inicializacaoDosCampos();
