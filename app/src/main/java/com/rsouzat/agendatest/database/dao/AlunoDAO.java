@@ -1,4 +1,4 @@
-package com.rsouzat.agendatest.dao;
+package com.rsouzat.agendatest.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

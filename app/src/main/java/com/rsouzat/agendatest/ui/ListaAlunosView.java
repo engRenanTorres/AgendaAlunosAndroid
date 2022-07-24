@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.rsouzat.agendatest.dao.AlunoDAO;
+import com.rsouzat.agendatest.database.dao.AlunoDAO;
 import com.rsouzat.agendatest.database.AgendaDatabase;
 import com.rsouzat.agendatest.model.Aluno;
 import com.rsouzat.agendatest.ui.adapter.ListaAlunosAdapter;

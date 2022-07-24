@@ -2,7 +2,7 @@ package com.rsouzat.agendatest;
 
 import android.app.Application;
 
-import com.rsouzat.agendatest.dao.AlunoDAO;
+import com.rsouzat.agendatest.database.dao.AlunoDAO;
 import com.rsouzat.agendatest.database.AgendaDatabase;
 import com.rsouzat.agendatest.model.Aluno;
 

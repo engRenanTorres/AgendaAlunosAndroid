@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">AgendaTest</string>
     <string name="enter_new_students">Enter New Students</string>
-  <string name="campo_nome_formulario_aluno">Nome...</string>
-  <string name="campo_telefone_formulario_aluno">Telefone...</string>
-  <string name="campo_email_formulario">email@email.com...</string>
+    <string name="campo_nome_formulario_aluno">Nome...</string>
+    <string name="campo_telefone_formulario_aluno">Telefone...</string>
+    <string name="campo_email_formulario">email@email.com...</string>
+  <string name="campo_celular_formulario_aluno">Celular...</string>
 </resources>

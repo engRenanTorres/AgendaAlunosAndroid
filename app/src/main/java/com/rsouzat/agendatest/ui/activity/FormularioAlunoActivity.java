@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rsouzat.agendatest.R;
-import com.rsouzat.agendatest.dao.AlunoDAO;
+import com.rsouzat.agendatest.database.dao.AlunoDAO;
 import com.rsouzat.agendatest.database.AgendaDatabase;
 import com.rsouzat.agendatest.model.Aluno;
 
@@ -22,6 +22,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
   private static final String TITULO_APPBAR_EDITA_ALUNO = "Edita aluno";
   private EditText campoNome;
   private EditText campoTelefone;
+  private EditText campoCelular;
   private EditText campoEmail;
   private Aluno aluno;
   private AlunoDAO dao;
@@ -70,6 +71,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
   private void preencheCampos() {
     campoNome.setText(aluno.getNome());
     campoTelefone.setText(aluno.getTelefone());
+    campoCelular.setText(aluno.getCelular());
     campoEmail.setText(aluno.getEmail());
   }
 
@@ -83,6 +85,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
   private void inicializacaoDosCampos() {
     campoNome = findViewById(R.id.activity_formulario_aluno_nome);
     campoTelefone = findViewById(R.id.activity_formulario_aluno_telefone);
+    campoCelular = findViewById(R.id.activity_formulario_aluno_celular);
     campoEmail = findViewById(R.id.activity_formulario_aluno_email);
   }
 
@@ -90,10 +93,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
   private void preencheAluno() {
     String nome = campoNome.getText().toString();
     String telefone = campoTelefone.getText().toString();
+    String celular = campoCelular.getText().toString();
     String email = campoEmail.getText().toString();
 
     aluno.setNome(nome);
     aluno.setTelefone(telefone);
+    aluno.setCelular(celular);
     aluno.setEmail(email);
 
   }
