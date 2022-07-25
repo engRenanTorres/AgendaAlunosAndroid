@@ -14,11 +14,11 @@ public class AgendaAplication extends Application {
    // Application é utilizando apenas uma vez na criação do app criaAlunosExemplo();
   }
 
-  private void criaAlunosExemplo() {
+/*  private void criaAlunosExemplo() {
     AgendaDatabase database = AgendaDatabase.getInstance(this);
     AlunoDAO dao = database.getRoomAlunoDAO();
     dao.salva(new Aluno("Renan", "4612347", "renan@alex"));
     dao.salva(new Aluno("Fran", "4612347", "fran@alex"));
-  }
+  }*/
 
 }

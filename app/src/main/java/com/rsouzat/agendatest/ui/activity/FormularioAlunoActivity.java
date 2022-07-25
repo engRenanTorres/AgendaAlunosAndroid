@@ -70,8 +70,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
   private void preencheCampos() {
     campoNome.setText(aluno.getNome());
-    campoTelefone.setText(aluno.getTelefone());
-    campoCelular.setText(aluno.getCelular());
+/*    campoTelefone.setText(aluno.getTelefone());
+    campoCelular.setText(aluno.getCelular());*/
     campoEmail.setText(aluno.getEmail());
   }
 
@@ -97,8 +97,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     String email = campoEmail.getText().toString();
 
     aluno.setNome(nome);
-    aluno.setTelefone(telefone);
-    aluno.setCelular(celular);
+//    aluno.setTelefone(telefone);
+//    aluno.setCelular(celular);
     aluno.setEmail(email);
 
   }
