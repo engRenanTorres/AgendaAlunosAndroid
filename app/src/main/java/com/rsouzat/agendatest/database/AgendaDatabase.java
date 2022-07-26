@@ -13,6 +13,7 @@ import androidx.room.TypeConverters;
 import com.rsouzat.agendatest.database.converter.ConversorTipoContato;
 import com.rsouzat.agendatest.database.dao.AlunoDAO;
 import com.rsouzat.agendatest.database.converter.ConversorCalendar;
+import com.rsouzat.agendatest.database.dao.ContatoDAO;
 import com.rsouzat.agendatest.model.Aluno;
 import com.rsouzat.agendatest.model.Contato;
 

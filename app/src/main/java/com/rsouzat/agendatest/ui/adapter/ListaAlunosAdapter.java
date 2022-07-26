@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.rsouzat.agendatest.R;
 import com.rsouzat.agendatest.database.AgendaDatabase;
-import com.rsouzat.agendatest.database.ContatoDAO;
+import com.rsouzat.agendatest.database.dao.ContatoDAO;
 import com.rsouzat.agendatest.model.Aluno;
 import com.rsouzat.agendatest.model.Contato;
 
@@ -20,8 +20,10 @@ import java.util.List;
 public class ListaAlunosAdapter extends BaseAdapter {
   private final List<Aluno> alunos = new ArrayList<>();
   private final Context context;
+  private ContatoDAO contatoDAO;
 
   public ListaAlunosAdapter(Context context) {
+    contatoDAO = AgendaDatabase.getInstance(context).getTelefoneDAO();
     this.context = context;
   }
 
@@ -54,7 +56,6 @@ public class ListaAlunosAdapter extends BaseAdapter {
     TextView nomeAluno = viewCriada.findViewById(R.id.item_nome_aluno);
     nomeAluno.setText(aluno.getNomeCompleto() + " " + aluno.dataFormatada());
     TextView telefoneAluno = viewCriada.findViewById(R.id.item_telefone_aluno);
-    ContatoDAO contatoDAO = AgendaDatabase.getInstance(context).getTelefoneDAO();
     Contato primeiroTelefone = contatoDAO.buscaPrimeiroTelefoneDoAluno(aluno.getId());
     telefoneAluno.setText(primeiroTelefone.getNumero());
   }

@@ -2,7 +2,6 @@ package com.rsouzat.agendatest.model;
 
 import static androidx.room.ForeignKey.*;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -13,6 +12,18 @@ public class Contato {
   private int id;
   private String numero;
   private TipoContato tipo;
+  @ForeignKey(entity = Aluno.class,
+    parentColumns = "id",
+    childColumns = "alunoId",
+    onUpdate = CASCADE,
+    onDelete = CASCADE)
+  private int alunoId;
+
+
+  public Contato(String numero, TipoContato tipo) {
+    this.numero = numero;
+    this.tipo = tipo;
+  }
 
   public int getAlunoId() {
     return alunoId;
@@ -22,12 +33,6 @@ public class Contato {
     this.alunoId = alunoId;
   }
 
-  @ForeignKey(entity = Aluno.class,
-    parentColumns = "id",
-    childColumns = "alunoId",
-    onUpdate = CASCADE,
-    onDelete = CASCADE)
-  private int alunoId;
 
   public int getId() {
     return id;
